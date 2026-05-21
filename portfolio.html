@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sahaana B - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #f9f7f4;
+        --ink: #1a1a18;
+        --muted: #888880;
+        --accent: #c8b89a;
+        --line: #e5e2dc;
+        --white: #ffffff;
+        --serif: "DM Serif Display", serif;
+        --sans: "DM Sans", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 300;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.4rem 4rem;
+        background: rgba(249, 247, 244, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-logo {
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.4rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .nav-resume {
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--bg);
+        background: var(--ink);
+        padding: 0.5rem 1.2rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        white-space: nowrap;
+      }
+      .nav-resume:hover {
+        background: var(--accent);
+        color: var(--ink);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 7rem 4rem;
+        max-width: 900px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.6rem;
+      }
+      h2 {
+        font-family: var(--serif);
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 2.8rem;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 6rem;
+        opacity: 1;
+        transform: none;
+        position: relative;
+      }
+      .hero-eyebrow {
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1.4rem;
+      }
+      .hero-name {
+        font-family: var(--serif);
+        font-size: clamp(3.2rem, 8vw, 6rem);
+        font-weight: 400;
+        line-height: 1.05;
+        margin-bottom: 1.4rem;
+      }
+      .hero-name em {
+        font-style: italic;
+        color: var(--muted);
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 520px;
+        margin-bottom: 3rem;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 2px;
+        transition: gap 0.25s, color 0.2s;
+      }
+      .hero-cta:hover {
+        gap: 1.1rem;
+        color: var(--muted);
+        border-color: var(--muted);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 4rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .hero-scroll::before {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 1px;
+        background: var(--muted);
+        animation: scrollLine 2s ease-in-out infinite;
+      }
+      @keyframes scrollLine {
+        0%,
+        100% {
+          width: 30px;
+        }
+        50% {
+          width: 50px;
+        }
+      }
+
+      /* ABOUT */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 220px 1fr 1fr;
+        gap: 2.8rem;
+        align-items: start;
+      }
+      .about-photo-wrap {
+        position: relative;
+      }
+      .about-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
+        filter: grayscale(8%);
+        transition: filter 0.4s;
+        border-radius: 2px;
+      }
+      .about-photo:hover {
+        filter: grayscale(0%);
+      }
+
+
+      .about-text p {
+        color: var(--muted);
+        margin-bottom: 1.1rem;
+        font-size: 1rem;
+      }
+      .about-facts {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+      }
+      .fact {
+        padding: 1.4rem;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+      .fact-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+      }
+      .fact-value {
+        font-size: 0.95rem;
+        color: var(--ink);
+      }
+
+      /* PROJECT CARDS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+      }
+      .project-card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        padding: 2rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        position: relative;
+      }
+      .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      }
+      .project-tag {
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.8rem;
+      }
+      .project-card h3 {
+        font-family: var(--serif);
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-bottom: 0.7rem;
+      }
+      .project-card p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .badge {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--bg);
+        padding: 0.3rem 0.8rem;
+      }
+      .card-hint {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 1.2rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .card-hint::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      /* SKILLS */
+      .skills-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 2.4rem;
+      }
+      .skill-group-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+      .skill-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .pill {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--line);
+        background: var(--white);
+        color: var(--ink);
+        letter-spacing: 0.04em;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .pill:hover {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      /* TIMELINE */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+      }
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        gap: 2rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--line);
+        cursor: pointer;
+        transition: background 0.2s;
+        border-radius: 2px;
+      }
+      .timeline-item:first-child {
+        border-top: 1px solid var(--line);
+      }
+      .timeline-item:hover {
+        background: rgba(200, 184, 154, 0.06);
+        padding-left: 0.5rem;
+        transition: padding 0.2s, background 0.2s;
+      }
+      .timeline-date {
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        padding-top: 0.15rem;
+      }
+      .timeline-body h3 {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        font-weight: 400;
+        margin-bottom: 0.2rem;
+      }
+      .timeline-org {
+        font-size: 0.8rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin-bottom: 0.7rem;
+      }
+      .timeline-body ul {
+        margin-top: 0.5rem;
+        padding-left: 1.1rem;
+      }
+      .timeline-body ul li {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 0.3rem;
+      }
+      .timeline-hint {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-top: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .timeline-hint::before {
+        content: "";
+        display: block;
+        width: 14px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      /* CONTACT */
+      .contact-inner {
+        max-width: 560px;
+      }
+      .contact-inner p {
+        color: var(--muted);
+        margin-bottom: 2.4rem;
+        font-size: 1rem;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 1.4rem;
+        border: 1px solid var(--line);
+        background: var(--white);
+        text-decoration: none;
+        color: var(--ink);
+        font-size: 0.88rem;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .contact-link:hover {
+        background: var(--ink);
+        color: var(--bg);
+        transform: translateX(4px);
+      }
+      .contact-link span {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .contact-link:hover span {
+        color: var(--accent);
+      }
+      .resume-dl {
+        border-color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 2rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      footer p {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      /* ── OVERLAY / POPUP ── */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(26, 26, 24, 0.6);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal {
+        background: var(--bg);
+        max-width: 780px;
+        width: 100%;
+        max-height: 88vh;
+        overflow-y: auto;
+        position: relative;
+        transform: translateY(20px) scale(0.98);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .overlay.open .modal {
+        transform: translateY(0) scale(1);
+      }
+
+      .modal-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        background: var(--ink);
+        color: var(--bg);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        margin-left: auto;
+        font-family: var(--sans);
+        transition: background 0.2s;
+      }
+      .modal-close:hover {
+        background: var(--accent);
+        color: var(--ink);
+      }
+
+      .modal-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+      }
+      .modal-images img {
+        width: 100%;
+        aspect-ratio: 16/10;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(15%);
+        transition: filter 0.3s;
+      }
+      .modal-images img:hover {
+        filter: grayscale(0%);
+      }
+      .modal-images img.img-wide {
+        grid-column: span 2;
+        aspect-ratio: 21/9;
+      }
+      .modal-images.two-imgs img {
+        grid-column: span 1;
+        aspect-ratio: 16/10;
+      }
+      .modal-images.one-img img {
+        grid-column: span 2;
+        aspect-ratio: 21/9;
+      }
+
+      .modal-body {
+        padding: 2.4rem;
+      }
+      .modal-tag {
+        font-size: 0.7rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.6rem;
+      }
+      .modal-title {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+      .modal-org {
+        font-size: 0.82rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        margin-bottom: 1.6rem;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1.2rem;
+      }
+      .modal-desc {
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin-bottom: 1.4rem;
+        line-height: 1.75;
+      }
+      .modal-points {
+        padding-left: 1.2rem;
+        margin-bottom: 1.4rem;
+      }
+      .modal-points li {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+      .modal-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+      }
+      .modal-tool {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.8rem;
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+      .modal-award {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: var(--ink);
+        color: var(--bg);
+        padding: 0.35rem 1rem;
+      }
+      .modal-img-note {
+        font-size: 0.72rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        margin-top: 0.5rem;
+        font-style: italic;
+        padding: 0 2.4rem;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 680px) {
+        nav {
+          padding: 1.2rem 1.5rem;
+        }
+        .nav-links {
+          gap: 1.4rem;
+        }
+        section {
+          padding: 5rem 1.5rem;
+        }
+        .hero-scroll {
+          left: 1.5rem;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 0.4rem;
+        }
+        footer {
+          padding: 2rem 1.5rem;
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+        .modal-images {
+          grid-template-columns: 1fr 1fr;
+        }
+        .overlay {
+          padding: 0.8rem;
+        }
+        .modal-body {
+          padding: 1.4rem;
+        }
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-eyebrow {
+        animation: fadeUp 0.7s 0.1s both;
+      }
+      .hero-name {
+        animation: fadeUp 0.8s 0.25s both;
+      }
+      .hero-sub {
+        animation: fadeUp 0.7s 0.42s both;
+      }
+      .hero-cta {
+        animation: fadeUp 0.7s 0.56s both;
+      }
+      .hero-scroll {
+        animation: fadeUp 0.7s 0.8s both;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- OVERLAY POPUP -->
+    <div class="overlay" id="overlay" role="dialog" aria-modal="true">
+      <div class="modal" id="modal">
+        <button class="modal-close" id="modalClose" aria-label="Close">
+          ✕
+        </button>
+        <div class="modal-images" id="modalImages"></div>
+        <p class="modal-img-note" id="modalImgNote"></p>
+        <div class="modal-body">
+          <div class="modal-tag" id="modalTag"></div>
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <div class="modal-org" id="modalOrg"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <ul class="modal-points" id="modalPoints"></ul>
+          <div class="modal-tools" id="modalTools"></div>
+          <div id="modalAward"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="#hero">Sahaana B</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-resume" href="resume.pdf" target="_blank" download
+        >Download CV</a
+      >
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <p class="hero-eyebrow">Hello, I'm</p>
+      <h1 class="hero-name">Sahaana<br /><em>B</em></h1>
+      <p class="hero-sub">
+        Final-year Mechatronics Engineering student. I design, build, and
+        integrate — from CAD models to electromechanical systems.
+      </p>
+      <a class="hero-cta" href="#projects">See my work →</a>
+      <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About Me</p>
+      <h2>A little about<br />who I am</h2>
+      <div class="about-grid">
+        <div class="about-photo-wrap">
+          <img src="Sahaana_Photo.jpeg" class="about-photo" alt="Sahaana B" />
+        </div>
+        <div class="about-text">
+          <p>
+            I'm a final-year Mechatronics Engineering student at Sri Krishna
+            College of Engineering and Technology, Coimbatore. My work sits at
+            the intersection of mechanical design, automation, and
+            electromechanical systems.
+          </p>
+          <p>
+            From designing a solar electric car's steering system to building an
+            assistive robot, I love solving real-world problems through
+            structured engineering thinking and hands-on building.
+          </p>
+          <p>
+            I'm currently open to internships and engineering opportunities
+            where I can contribute and grow.
+          </p>
+        </div>
+        <div class="about-facts">
+          <div class="fact">
+            <div class="fact-label">Degree</div>
+            <div class="fact-value">B.E. Mechatronics Engineering</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">College</div>
+            <div class="fact-value">
+              Sri Krishna College of Engineering and Technology
+            </div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Graduating</div>
+            <div class="fact-value">Class of 2027</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">CGPA</div>
+            <div class="fact-value">8.1 / 10.0</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Based in</div>
+            <div class="fact-value">Coimbatore, Tamil Nadu, India</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <h2>Things I've<br />built & explored</h2>
+      <div class="projects-grid">
+        <div class="project-card" data-id="astra">
+          <div class="project-tag">Automotive · 2025</div>
+          <h3>Solar Electric Car — Team ASTRA</h3>
+          <p>
+            Designed and optimized the steering subsystem geometry using CAD.
+            Ran simulations for stability and handling across a competitive
+            solar vehicle.
+          </p>
+          <div class="badge">🏆 1st Place — Bharat Solar Vehicle Challenge</div>
+          <div class="card-hint">Tap to explore</div>
+        </div>
+
+        <div class="project-card" data-id="robot">
+          <div class="project-tag">Robotics · Mechatronics</div>
+          <h3>Assistive Feeding & Medication Dispensing Robot</h3>
+          <p>
+            Designed the mechatronic architecture, 3D CAD layouts, and
+            integrated feeding and dispensing mechanisms into a unified
+            prototype.
+          </p>
+          <div class="card-hint">Tap to explore</div>
+        </div>
+
+        <div class="project-card" data-id="vvn">
+          <div class="project-tag">CAD · Industrial Design · 2026</div>
+          <h3>Industrial CAD Modelling — VVN Engineering</h3>
+          <p>
+            Developed and modified 3D CAD models in SolidWorks for
+            manufacturing. Created technical drawings and supported design
+            validation.
+          </p>
+          <div class="card-hint">Tap to explore</div>
+        </div>
+
+        <div class="project-card" data-id="nlc">
+          <div class="project-tag">Power Systems · 2025</div>
+          <h3>Industrial Internship — NLC India Limited</h3>
+          <p>
+            Observed mechanical, electrical, and control systems in a live power
+            plant. Studied safety protocols and cross-functional coordination.
+          </p>
+          <div class="card-hint">Tap to explore</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <h2>What I work<br />with</h2>
+      <div class="skills-groups">
+        <div>
+          <div class="skill-group-label">Programming Languages</div>
+          <div class="skill-pills">
+            <div class="pill">C++</div>
+            <div class="pill">Python</div>
+            <div class="pill">HTML</div>
+            <div class="pill">CSS</div>
+            <div class="pill">SQL</div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">CAD & Engineering Tools</div>
+          <div class="skill-pills">
+            <div class="pill">SolidWorks</div>
+            <div class="pill">AutoCAD</div>
+            <div class="pill">CAD Modelling</div>
+            <div class="pill">Mechanical Design</div>
+            <div class="pill">Simulation & Analysis</div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Core Concepts</div>
+          <div class="skill-pills">
+            <div class="pill">Data Structures & Algorithms</div>
+            <div class="pill">Object-Oriented Programming</div>
+            <div class="pill">System Integration</div>
+            <div class="pill">Design Validation</div>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Soft Skills</div>
+          <div class="skill-pills">
+            <div class="pill">Communication & Teamwork</div>
+            <div class="pill">Problem Solving</div>
+            <div class="pill">Time Management</div>
+            <div class="pill">Adaptability</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <h2>Where I've<br />been</h2>
+      <div class="timeline">
+        <div class="timeline-item" data-id="vvn-intern">
+          <div class="timeline-date">May 2026</div>
+          <div class="timeline-body">
+            <h3>Design Intern</h3>
+            <div class="timeline-org">VVN Engineering, Coimbatore</div>
+            <ul>
+              <li>Developed and modified 3D CAD models using SolidWorks</li>
+              <li>Created technical drawings to support manufacturing</li>
+              <li>Assisted in design validation and iteration</li>
+            </ul>
+            <div class="timeline-hint">Tap to see more</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-id="astra-intern">
+          <div class="timeline-date">Oct 2025</div>
+          <div class="timeline-body">
+            <h3>Steering Head — Solar Electric Car</h3>
+            <div class="timeline-org">Team ASTRA</div>
+            <ul>
+              <li>Designed steering subsystem geometry using CAD tools</li>
+              <li>Led subsystem decision-making for steering improvements</li>
+              <li>Achieved 1st Place at Bharat Solar Vehicle Challenge</li>
+            </ul>
+            <div class="timeline-hint">Tap to see more</div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-id="nlc-intern">
+          <div class="timeline-date">May 2025</div>
+          <div class="timeline-body">
+            <h3>Intern — Power Plant Operations</h3>
+            <div class="timeline-org">NLC India Limited, Neyveli</div>
+            <ul>
+              <li>Observed mechanical, electrical, and control systems</li>
+              <li>Studied preventive maintenance and safety protocols</li>
+              <li>
+                Built foundational knowledge of large-scale industrial operations
+              </li>
+            </ul>
+            <div class="timeline-hint">Tap to see more</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+      <h2>Let's get<br />in touch</h2>
+      <div class="contact-inner">
+        <p>
+          I'm open to internships, engineering collaborations, and new
+          opportunities. Feel free to reach out!
+        </p>
+        <div class="contact-links">
+          <a
+            class="contact-link"
+            href="mailto:sahaana.john@gmail.com"
+            target="_blank"
+            >sahaana.john@gmail.com<span>Email</span></a
+          >
+          <a
+            class="contact-link"
+            href="https://linkedin.com/in/-sahaana-b-/"
+            target="_blank"
+            >linkedin.com/in/-sahaana-b-/<span>LinkedIn</span></a
+          >
+          <a
+            class="contact-link"
+            href="https://github.com/Sahaana-Balan"
+            target="_blank"
+            >github.com/Sahaana-Balan<span>GitHub</span></a
+          >
+          <a class="contact-link" href="tel:+918122085655" target="_blank"
+            >+91 81220 85655<span>Phone</span></a
+          >
+          <a
+            class="contact-link resume-dl"
+            href="resume.pdf"
+            target="_blank"
+            download
+          >
+            Download Resume (PDF)
+            <span>CV</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Sahaana B</p>
+      <p>Coimbatore, Tamil Nadu ✦</p>
+    </footer>
+
+    <script>
+      // ── Scroll reveal ──
+      const sections = document.querySelectorAll("section:not(#hero)");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      sections.forEach((s) => observer.observe(s));
+
+      // ── Popup data ──
+      const data = {
+        astra: {
+          tag: "Automotive · 2025",
+          title: "Solar Electric Car — Team ASTRA",
+          org: "Team ASTRA · Bharat Solar Vehicle Challenge",
+          desc: "As Steering Head of Team ASTRA, I was responsible for the full design and optimization of the vehicle's steering subsystem. This involved translating performance requirements into precise geometry and validating it through simulation before fabrication.",
+          points: [
+            "Designed steering geometry (Ackermann layout) using SolidWorks CAD tools",
+            "Ran kinematic simulations to ensure stability and handling at various speeds",
+            "Collaborated across chassis, electrical, and aerodynamics sub-teams",
+            "Led fabrication and testing of the physical steering assembly",
+            "Contributed to overall vehicle performance optimization",
+          ],
+          tools: ["SolidWorks", "CAD Modelling", "Simulation", "Teamwork"],
+          award: "🏆 1st Place — Bharat Solar Vehicle Challenge",
+          // Replace these URLs with your own images of the project
+          images: [
+            { src: "full_isometric.jpg" },
+            { src: "geometry.jpg" },
+            { src: "lotus.jpg" },
+            { src: "steering_rack_side.jpg" },
+          ],
+          imgNote: "",
+        },
+        robot: {
+          tag: "Robotics · Mechatronics",
+          title: "Assistive Feeding & Medication Dispensing Robot",
+          org: "Academic Project · Mechatronics Engineering",
+          desc: "Designed and developed a mechatronic assistive robot to help individuals with limited mobility. The system integrates a food dispensing arm and a timed medication unit into a single, cohesive product with motion-guided delivery.",
+          points: [
+            "Designed mechatronic system architecture for end-to-end integration",
+            "Developed 3D CAD layouts for mechanical feasibility validation",
+            "Integrated feeding and dispensing mechanisms into a unified system",
+            "Conducted motion analysis for system performance evaluation",
+            "Built and tested a functional prototype across multiple iterations",
+          ],
+          tools: [
+            "SolidWorks",
+            "CAD Modelling",
+            "Mechatronics",
+            "Prototyping",
+            "Python",
+          ],
+          award: null,
+          images: [{ src: "mini_side.jpg" }, { src: "mini_front.jpg" }],
+          imgNote: "",
+        },
+        vvn: {
+          tag: "CAD · Industrial Design · 2026",
+          title: "Industrial CAD Modelling",
+          org: "VVN Engineering, Coimbatore · Design Intern",
+          desc: "During my internship at VVN Engineering, I worked on real industrial product designs — modifying and creating 3D CAD models that fed directly into manufacturing workflows.",
+          points: [
+            "Developed 3D CAD models in SolidWorks from scratch and from reference specs",
+            "Created detailed engineering drawings for manufacturing teams",
+            "Participated in design reviews and iterated based on engineer feedback",
+            "Documented design specs and contributed to version-controlled design records",
+            "Gained hands-on exposure to industrial-grade modelling practices",
+          ],
+          tools: [
+            "SolidWorks",
+            "AutoCAD",
+            "Technical Drawing",
+            "Design Validation",
+          ],
+          award: null,
+          images: [
+            { src: "vvn_pressure_vessel.jpeg" },
+            { src: "vvn_welding_positioner.jpg" },
+          ],
+          imgNote: "",
+        },
+        nlc: {
+          tag: "Power Systems · 2025",
+          title: "Industrial Internship — NLC India Limited",
+          org: "NLC India Limited, Neyveli · Intern",
+          desc: "Interned at one of India's largest power generation companies. Got first-hand exposure to how large-scale industrial systems are operated, monitored, and maintained — from thermal power generation to control room operations.",
+          points: [
+            "Observed live mechanical, electrical, and control system operations",
+            "Learned preventive maintenance routines for industrial turbines and generators",
+            "Studied industrial safety compliance standards and emergency procedures",
+            "Engaged directly with plant engineers on system-level operations",
+            "Documented plant processes and produced structured observation reports",
+          ],
+          tools: [
+            "Industrial Systems",
+            "Power Plant Ops",
+            "Safety Protocols",
+            "Documentation",
+          ],
+          award: null,
+          images: [
+            { src: "nlc_1.jpeg" },
+            { src: "nlc_2.jpeg" },
+            { src: "nlc_3.jpeg" },
+            { src: "nlc_4.jpeg" },
+          ],
+          imgNote: "",
+        },
+        // Experience timeline entries reuse same data with slight focus shift
+        "vvn-intern": "vvn",
+        "astra-intern": "astra",
+        "nlc-intern": "nlc",
+      };
+
+      // ── Open popup ──
+      function openModal(id) {
+        const raw = data[id];
+        const d = typeof raw === "string" ? data[raw] : raw;
+        if (!d) return;
+
+        // Images
+        const imgContainer = document.getElementById("modalImages");
+        const imgs = d.images;
+        if (imgs.length === 1) imgContainer.className = "modal-images one-img";
+        else if (imgs.length === 2)
+          imgContainer.className = "modal-images two-imgs";
+        else imgContainer.className = "modal-images";
+        imgContainer.innerHTML = imgs
+          .map((img, i) => {
+            const isWide = imgs.length >= 3 && i === 0;
+            return `<img src="${img.src}" class="${
+              isWide ? "img-wide" : ""
+            }" alt="project image" loading="lazy">`;
+          })
+          .join("");
+
+        document.getElementById("modalImgNote").textContent = d.imgNote || "";
+        document.getElementById("modalTag").textContent = d.tag;
+        document.getElementById("modalTitle").textContent = d.title;
+        document.getElementById("modalOrg").textContent = d.org;
+        document.getElementById("modalDesc").textContent = d.desc;
+
+        const pts = document.getElementById("modalPoints");
+        pts.innerHTML = d.points.map((p) => `<li>${p}</li>`).join("");
+
+        const tools = document.getElementById("modalTools");
+        tools.innerHTML = d.tools
+          .map((t) => `<span class="modal-tool">${t}</span>`)
+          .join("");
+
+        const award = document.getElementById("modalAward");
+        award.innerHTML = d.award
+          ? `<div class="modal-award">${d.award}</div>`
+          : "";
+
+        document.getElementById("overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById("overlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // ── Attach listeners ──
+      document.querySelectorAll(".project-card[data-id]").forEach((card) => {
+        card.addEventListener("click", () => openModal(card.dataset.id));
+      });
+      document.querySelectorAll(".timeline-item[data-id]").forEach((item) => {
+        item.addEventListener("click", () => openModal(item.dataset.id));
+      });
+      document
+        .getElementById("modalClose")
+        .addEventListener("click", closeModal);
+      document.getElementById("overlay").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("overlay")) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    </script>
+  </body>
+</html>
