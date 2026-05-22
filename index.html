@@ -53,6 +53,10 @@
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--line);
       }
+      /* Mobile nav scroll wrapper */
+      .nav-scroll {
+        display: contents;
+      }
       .nav-logo {
         font-family: var(--serif);
         font-size: 1.25rem;
@@ -542,6 +546,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 3px;
+        margin-top: 0;
       }
       .modal-images img {
         width: 100%;
@@ -569,6 +574,7 @@
 
       .modal-body {
         padding: 2.4rem;
+        padding-bottom: 1.6rem;
       }
       .modal-tag {
         font-size: 0.7rem;
@@ -643,10 +649,35 @@
       /* RESPONSIVE */
       @media (max-width: 680px) {
         nav {
-          padding: 1.2rem 1.5rem;
+          padding: 0;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          gap: 0;
+        }
+        nav::-webkit-scrollbar {
+          display: none;
+        }
+        .nav-logo {
+          padding: 1rem 1.2rem;
+          flex-shrink: 0;
+          border-right: 1px solid var(--line);
         }
         .nav-links {
-          gap: 1.4rem;
+          gap: 0;
+          flex-shrink: 0;
+        }
+        .nav-links li a {
+          padding: 1rem 1rem;
+          display: block;
+          white-space: nowrap;
+        }
+        .nav-resume {
+          flex-shrink: 0;
+          padding: 1rem 1.2rem;
+          margin-left: auto;
         }
         section {
           padding: 5rem 1.5rem;
@@ -717,8 +748,6 @@
         <button class="modal-close" id="modalClose" aria-label="Close">
           ✕
         </button>
-        <div class="modal-images" id="modalImages"></div>
-        <p class="modal-img-note" id="modalImgNote"></p>
         <div class="modal-body">
           <div class="modal-tag" id="modalTag"></div>
           <h3 class="modal-title" id="modalTitle"></h3>
@@ -728,6 +757,8 @@
           <div class="modal-tools" id="modalTools"></div>
           <div id="modalAward"></div>
         </div>
+        <div class="modal-images" id="modalImages"></div>
+        <p class="modal-img-note" id="modalImgNote"></p>
       </div>
     </div>
 
@@ -1123,10 +1154,77 @@
           ],
           imgNote: "",
         },
-        // Experience timeline entries reuse same data with slight focus shift
-        "vvn-intern": "vvn",
-        "astra-intern": "astra",
-        "nlc-intern": "nlc",
+        // ── Internship entries — separate content from project cards ──
+        "vvn-intern": {
+          tag: "Design Intern · May 2026",
+          title: "Design Intern — VVN Engineering",
+          org: "VVN Engineering, Coimbatore, Tamil Nadu",
+          desc: "A hands-on internship focused on real industrial product design. I worked directly within the engineering team, contributing to live manufacturing projects through 3D modelling, technical drawing, and design validation.",
+          points: [
+            "Developed and modified 3D CAD models in SolidWorks based on client and manufacturing requirements",
+            "Created detailed technical drawings and assembly sheets used by the production team",
+            "Participated in design review meetings and incorporated engineer feedback into iterations",
+            "Documented design specifications and maintained version records for ongoing projects",
+            "Gained direct exposure to industrial-grade modelling workflows and manufacturing standards",
+          ],
+          tools: ["SolidWorks", "AutoCAD", "Technical Drawing", "Design Validation", "Manufacturing Workflows"],
+          award: null,
+          // To update images: replace the filenames below with your internship photos
+          // Current images are the CAD models from VVN — swap with on-site photos if you have them
+          images: [
+            { src: "vvn_pressure_vessel.jpeg" },
+            { src: "vvn_welding_positioner.jpg" },
+          ],
+          imgNote: "",
+        },
+        "astra-intern": {
+          tag: "Steering Head · Oct 2025",
+          title: "Steering Head — Team ASTRA",
+          org: "Team ASTRA · Solar Electric Vehicle Project",
+          desc: "As the Steering Head of Team ASTRA, I led the design, simulation, and fabrication of the vehicle's complete steering system. This was a team-based engineering competition role where I owned a critical subsystem from concept to competition.",
+          points: [
+            "Led end-to-end design of the steering subsystem — from geometry layout to physical assembly",
+            "Applied Ackermann steering geometry principles to optimise turning radius and wheel alignment",
+            "Ran kinematic simulations in SolidWorks to validate stability and handling under load",
+            "Coordinated with chassis, suspension, and electrical sub-teams for full vehicle integration",
+            "Oversaw fabrication, fitment, and on-track testing of the steering assembly",
+          ],
+          tools: ["SolidWorks", "Kinematic Simulation", "Fabrication", "CAD Modelling", "Cross-team Collaboration"],
+          award: "🏆 1st Place — Bharat Solar Vehicle Challenge",
+          // ── TO UPDATE ASTRA INTERNSHIP IMAGES ──
+          // Find this section in the code and replace the src filenames:
+          //   images: [ { src: "YOUR_IMAGE_1.jpg" }, { src: "YOUR_IMAGE_2.jpg" }, ... ]
+          // Supported: jpg, jpeg, png — place files in the same folder as portfolio.html
+          images: [
+            { src: "full_isometric.jpg" },
+            { src: "lotus.jpg" },
+            { src: "geometry.jpg" },
+            { src: "steering_rack_side.jpg" },
+          ],
+          imgNote: "",
+        },
+        "nlc-intern": {
+          tag: "Intern · May 2025",
+          title: "Intern — NLC India Limited",
+          org: "NLC India Limited, Neyveli, Tamil Nadu",
+          desc: "An immersive industrial internship at one of India's largest public sector power generation companies. I was exposed to the full scale of thermal power plant operations — from turbine halls to control systems — and learned how large engineering organisations function in practice.",
+          points: [
+            "Toured and studied live mechanical, electrical, and control systems across the power plant",
+            "Observed steam turbine operations, generator systems, and plant-wide piping layouts",
+            "Learned preventive and corrective maintenance practices for large rotating machinery",
+            "Studied industrial safety compliance standards, permit-to-work systems, and emergency protocols",
+            "Interacted with plant engineers to understand system-level decision making and operational workflows",
+          ],
+          tools: ["Power Plant Systems", "Industrial Safety", "Mechanical Observation", "Technical Documentation"],
+          award: null,
+          images: [
+            { src: "nlc_1.jpeg" },
+            { src: "nlc_2.jpeg" },
+            { src: "nlc_3.jpeg" },
+            { src: "nlc_4.jpeg" },
+          ],
+          imgNote: "",
+        },
       };
 
       // ── Open popup ──
