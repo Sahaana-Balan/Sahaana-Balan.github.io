@@ -782,8 +782,7 @@
       <p class="hero-eyebrow">Hello, I'm</p>
       <h1 class="hero-name">Sahaana<br /><em>B</em></h1>
       <p class="hero-sub">
-        Final-year Mechatronics Engineering student. I design, build, and
-        integrate — from CAD models to electromechanical systems.
+        Motivated final-year Mechatronics Engineering student with hands-on experience in IoT, embedded systems, automation, and software development.
       </p>
       <a class="hero-cta" href="#projects">See my work →</a>
       <div class="hero-scroll">Scroll</div>
@@ -831,7 +830,7 @@
           </div>
           <div class="fact">
             <div class="fact-label">CGPA</div>
-            <div class="fact-value">8.1 / 10.0</div>
+            <div class="fact-value">8.0 / 10.0</div>
           </div>
           <div class="fact">
             <div class="fact-label">Based in</div>
@@ -902,11 +901,13 @@
           <div class="skill-pills">
             <div class="pill">C++</div>
             <div class="pill">Python</div>
+            <div class="pill">HTML</div>
+            <div class="pill">CSS</div>
             <div class="pill">SQL</div>
           </div>
         </div>
         <div>
-          <div class="skill-group-label">CAD & Engineering Tools</div>
+          <div class="skill-group-label">CAD Tools</div>
           <div class="skill-pills">
             <div class="pill">SolidWorks</div>
             <div class="pill">AutoCAD</div>
@@ -920,10 +921,20 @@
           <div class="skill-pills">
             <div class="pill">Data Structures & Algorithms</div>
             <div class="pill">Object-Oriented Programming</div>
+            <div class="pill">DBMS</div>
+            <div class="pill">IoT</div>
             <div class="pill">System Integration</div>
-            <div class="pill">Design Validation</div>
           </div>
         </div>
+        <div>
+          <div class="skill-group-label">Engineering Tools</div>
+          <div class="skill-pills">
+            <div class="pill">ESP32</div>
+            <div class="pill">Raspberry Pi</div>
+            <div class="pill">MQTT</div>
+          </div>
+        </div>
+
         <div>
           <div class="skill-group-label">Soft Skills</div>
           <div class="skill-pills">
@@ -941,6 +952,20 @@
       <p class="section-label">Experience</p>
       <h2>Where I've<br />been</h2>
       <div class="timeline">
+        <div class="timeline-item" data-id="srm-intern">
+          <div class="timeline-date">June 2026</div>
+          <div class="timeline-body">
+            <h3>Project Trainee</h3>
+            <div class="timeline-org">SRM University, Chennai</div>
+            <ul>
+              <li>Designed and deployed a full-stack IoT fertigation system</li>
+              <li>Integrated ESP32, MQTT broker, and React.js dashboard</li>
+              <li>Enabled real-time monitoring and remote pump control</li>
+            </ul>
+            <div class="timeline-hint">Tap to see more</div>
+          </div>
+        </div>
+
         <div class="timeline-item" data-id="vvn-intern">
           <div class="timeline-date">May 2026</div>
           <div class="timeline-body">
@@ -1153,6 +1178,50 @@
           imgNote: "",
         },
         // ── Internship entries — separate content from project cards ──
+        fertigation: {
+          tag: "IoT · Full-Stack · 2026",
+          title: "IoT-Enabled Fertigation Preparation System",
+          org: "Internship Project — SRM University, Chennai",
+          desc: "Built a complete IoT system for automated hydroponic nutrient dosing. The system integrates ESP32 firmware, a Mosquitto MQTT broker on Raspberry Pi, a Python WebSocket bridge, and a bidirectional React.js dashboard — enabling real-time sensor monitoring and remote control of peristaltic pumps.",
+          points: [
+            "Programmed ESP32 to read pH (±0.04 accuracy), TDS/EC, and ultrasonic sensors and control 4 relay-driven peristaltic pumps",
+            "Set up a Mosquitto MQTT broker on Raspberry Pi for reliable IoT communication",
+            "Built a Python WebSocket bridge to connect MQTT data to the React.js frontend",
+            "Developed a bidirectional React.js dashboard for real-time monitoring and remote pump control",
+            "Achieved near-100% message delivery reliability across the MQTT-WebSocket-React pipeline",
+          ],
+          tools: ["ESP32", "Raspberry Pi", "MQTT", "Python", "React.js", "WebSocket", "C++"],
+          award: null,
+          images: [
+            { src: "fertigation_1.jpg" },
+            { src: "fertigation_2.jpg" },
+            { src: "fertigation_3.jpg" },
+            { src: "fertigation_4.jpg" },
+          ],
+          imgNote: "📷 Add your project photos — replace fertigation_1.jpg to fertigation_4.jpg in the same folder",
+        },
+        "srm-intern": {
+          tag: "Project Trainee · June 2026",
+          title: "Project Trainee — SRM University",
+          org: "SRM University, Chennai",
+          desc: "Completed an industry-oriented project traineeship at SRM University's CoE, building a full-stack IoT fertigation system from the ground up — covering embedded firmware, networking, and a live interactive dashboard.",
+          points: [
+            "Designed and deployed the full hardware-software stack for an IoT fertigation control system",
+            "Integrated ESP32 with pH, TDS/EC, and ultrasonic sensors for precise nutrient monitoring",
+            "Configured Mosquitto MQTT broker on Raspberry Pi for robust device communication",
+            "Built a Python WebSocket bridge and React.js dashboard for remote bidirectional control",
+            "Validated system reliability with near-100% MQTT message delivery under continuous operation",
+          ],
+          tools: ["ESP32", "Raspberry Pi", "MQTT", "Python", "React.js", "WebSocket", "Embedded C++"],
+          award: null,
+          images: [
+            { src: "fertigation_1.jpg" },
+            { src: "fertigation_2.jpg" },
+            { src: "fertigation_3.jpg" },
+            { src: "fertigation_4.jpg" },
+          ],
+          imgNote: "📷 Add your project photos — replace fertigation_1.jpg to fertigation_4.jpg in the same folder",
+        },
         "vvn-intern": {
           tag: "Design Intern · May 2026",
           title: "Design Intern — VVN Engineering",
